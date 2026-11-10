@@ -1,0 +1,127 @@
+{
+  "entities": {
+    "Innovation": {
+      "title": "Innovation",
+      "description": "An innovation or intellectual property record cataloged by Africanvaris Technology.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "uniqueCode": { "type": "string" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "category": { "type": "string" },
+        "registrationDate": { "type": "string" },
+        "problem": { "type": "string" },
+        "solution": { "type": "string" },
+        "howItWorks": { "type": "string" },
+        "technicalDescription": { "type": "string" },
+        "intellectualPropertyStatus": { "type": "string" },
+        "developmentStage": { "type": "string" },
+        "stageProgress": { "type": "number" },
+        "confidentialityLevel": { "type": "string", "enum": ["PUBLIC", "RESTRICTED", "CONFIDENTIAL", "ARCHIVED"] }
+      },
+      "required": ["id", "uniqueCode", "title", "category", "problem", "solution", "developmentStage", "confidentialityLevel"]
+    },
+    "Research": {
+      "title": "Research",
+      "description": "Scientific research papers, methodology briefs, and empirical findings.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "abstract": { "type": "string" },
+        "date": { "type": "string" },
+        "publicationStatus": { "type": "string" },
+        "isApproved": { "type": "boolean" }
+      },
+      "required": ["id", "title", "abstract", "date", "isApproved"]
+    },
+    "Publication": {
+      "title": "Publication",
+      "description": "Official press releases, technology perspectives, and company announcements.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "date": { "type": "string" },
+        "author": { "type": "string" },
+        "excerpt": { "type": "string" },
+        "content": { "type": "string" },
+        "isArchived": { "type": "boolean" }
+      },
+      "required": ["id", "title", "date", "content"]
+    },
+    "PartnershipEnquiry": {
+      "title": "PartnershipEnquiry",
+      "description": "Inbound institutional partnership and investment dossiers.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string" },
+        "name": { "type": "string" },
+        "organization": { "type": "string" },
+        "email": { "type": "string" },
+        "country": { "type": "string" },
+        "partnershipType": { "type": "string" },
+        "innovationInterest": { "type": "string" },
+        "message": { "type": "string" },
+        "status": { "type": "string", "enum": ["New", "In Review", "Contacted", "Partnered"] }
+      },
+      "required": ["id", "name", "organization", "email", "country", "partnershipType", "message"]
+    },
+    "ContactMessage": {
+      "title": "ContactMessage",
+      "description": "Public communications submitted through the contact portal.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "subject": { "type": "string" },
+        "message": { "type": "string" },
+        "status": { "type": "string", "enum": ["Unread", "Replied"] }
+      },
+      "required": ["id", "name", "email", "subject", "message"]
+    },
+    "Administrator": {
+      "title": "Administrator",
+      "description": "Authorized Africanvaris administrator profile with role-based clearance.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string" }
+      },
+      "required": ["email", "name", "role"]
+    }
+  },
+  "firestore": {
+    "/innovations/{innovationId}": {
+      "schema": "Innovation",
+      "description": "Catalog of all registered technological and scientific innovations."
+    },
+    "/research/{researchId}": {
+      "schema": "Research",
+      "description": "Collection of scientific research papers and whitepapers."
+    },
+    "/publications/{publicationId}": {
+      "schema": "Publication",
+      "description": "Press releases, news, and official announcements."
+    },
+    "/partnership_enquiries/{enquiryId}": {
+      "schema": "PartnershipEnquiry",
+      "description": "Confidential partnership and investor proposals."
+    },
+    "/contact_messages/{messageId}": {
+      "schema": "ContactMessage",
+      "description": "Public website transmissions and messages."
+    },
+    "/administrators/{adminId}": {
+      "schema": "Administrator",
+      "description": "Registered administrator accounts."
+    }
+  }
+}
